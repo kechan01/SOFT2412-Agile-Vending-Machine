@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Transaction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">project.model.payment</a> &gt; <span class="el_source">Transaction.java</span></div><h1>Transaction.java</h1><pre class="source lang-java linenums">package project.model.payment;
+
+import java.time.LocalDateTime;
+
+import project.model.product.Product;
+import project.model.user.User;
+
+public class Transaction {
+<span class="nc" id="L9">    public enum PaymentMethod {</span>
+<span class="nc" id="L10">        CASH,</span>
+<span class="nc" id="L11">        CARD</span>
+    }
+
+    private LocalDateTime date;
+    private Product product;
+    private double amount;
+    private double change;
+    private PaymentMethod paymentMethod;
+    private User user;
+    private String cancellationReason;
+
+    public Transaction(
+            LocalDateTime date,
+            Product product,
+            double amount,
+            double change,
+            PaymentMethod paymentMethod,
+            User user,
+<span class="nc" id="L29">            String cancellationReason) {</span>
+<span class="nc" id="L30">        this.date = date;</span>
+<span class="nc" id="L31">        this.product = product;</span>
+<span class="nc" id="L32">        this.amount = amount;</span>
+<span class="nc" id="L33">        this.change = change;</span>
+<span class="nc" id="L34">        this.paymentMethod = paymentMethod;</span>
+<span class="nc" id="L35">        this.user = user;</span>
+<span class="nc" id="L36">        this.cancellationReason = cancellationReason;</span>
+<span class="nc" id="L37">    }</span>
+
+    public LocalDateTime date() {
+<span class="nc" id="L40">        return date;</span>
+    }
+
+    public Product product() {
+<span class="nc" id="L44">        return product;</span>
+    }
+
+    public double amount() {
+<span class="nc" id="L48">        return amount;</span>
+    }
+
+    public double change() {
+<span class="nc" id="L52">        return change;</span>
+    }
+
+    public PaymentMethod paymentMethod() {
+<span class="nc" id="L56">        return paymentMethod;</span>
+    }
+
+    public User user() {
+<span class="nc" id="L60">        return user;</span>
+    }
+
+    public String cancellationReason() {
+<span class="nc" id="L64">        return cancellationReason;</span>
+    }
+
+    public boolean isCancelled() {
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        return cancellationReason != null;</span>
+    }
+
+    public void setDate(LocalDateTime date) {
+<span class="nc" id="L72">        this.date = date;</span>
+<span class="nc" id="L73">    }</span>
+
+    public void setProduct(Product product) {
+<span class="nc" id="L76">        this.product = product;</span>
+<span class="nc" id="L77">    }</span>
+
+    public void setAmount(double amount) {
+<span class="nc" id="L80">        this.amount = amount;</span>
+<span class="nc" id="L81">    }</span>
+
+    public void setChange(double change) {
+<span class="nc" id="L84">        this.change = change;</span>
+<span class="nc" id="L85">    }</span>
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+<span class="nc" id="L88">        this.paymentMethod = paymentMethod;</span>
+<span class="nc" id="L89">    }</span>
+
+    public void setUser(User user) {
+<span class="nc" id="L92">        this.user = user;</span>
+<span class="nc" id="L93">    }</span>
+
+    public void setCancellationReason(String cancellationReason) {
+<span class="nc" id="L96">        this.cancellationReason = cancellationReason;</span>
+<span class="nc" id="L97">    }</span>
+
+<span class="nc" id="L99">    public static class TransactionBuilder {</span>
+<span class="nc" id="L100">        private LocalDateTime date = null;</span>
+<span class="nc" id="L101">        private Product product = null;</span>
+<span class="nc" id="L102">        private double amount = 0.0;</span>
+<span class="nc" id="L103">        private double change = 0.0;</span>
+<span class="nc" id="L104">        private PaymentMethod paymentMethod = null;</span>
+<span class="nc" id="L105">        private User user = null;</span>
+<span class="nc" id="L106">        private String cancellationReason = null;</span>
+
+        public TransactionBuilder setDate(LocalDateTime date) {
+<span class="nc" id="L109">            this.date = date;</span>
+<span class="nc" id="L110">            return this;</span>
+        }
+
+        public TransactionBuilder setProduct(Product product) {
+<span class="nc" id="L114">            this.product = product;</span>
+<span class="nc" id="L115">            return this;</span>
+        }
+
+        public TransactionBuilder setAmount(double amount) {
+<span class="nc" id="L119">            this.amount = amount;</span>
+<span class="nc" id="L120">            return this;</span>
+        }
+
+        public TransactionBuilder setChange(double change) {
+<span class="nc" id="L124">            this.change = change;</span>
+<span class="nc" id="L125">            return this;</span>
+        }
+
+        public TransactionBuilder setPaymentMethod(PaymentMethod paymentMethod) {
+<span class="nc" id="L129">            this.paymentMethod = paymentMethod;</span>
+<span class="nc" id="L130">            return this;</span>
+        }
+
+        public TransactionBuilder setUser(User user) {
+<span class="nc" id="L134">            this.user = user;</span>
+<span class="nc" id="L135">            return this;</span>
+        }
+
+        public TransactionBuilder setCancellationReason(String cancellationReason) {
+<span class="nc" id="L139">            this.cancellationReason = cancellationReason;</span>
+<span class="nc" id="L140">            return this;</span>
+        }
+
+        public Transaction build() {
+<span class="nc" id="L144">            return new Transaction(</span>
+                    date,
+                    product,
+                    amount,
+                    change,
+                    paymentMethod,
+                    user,
+                    cancellationReason);
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

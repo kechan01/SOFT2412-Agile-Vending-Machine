@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreditDBParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">project.model.parser</a> &gt; <span class="el_source">CreditDBParser.java</span></div><h1>CreditDBParser.java</h1><pre class="source lang-java linenums">package project.model.parser;
+
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import project.model.payment.Card;
+
+<span class="nc" id="L12">public class CreditDBParser {</span>
+    public static ArrayList&lt;Card&gt; loadDB(String dir) {
+<span class="nc" id="L14">        JSONParser parser = new JSONParser();</span>
+<span class="nc" id="L15">        ArrayList&lt;Card&gt; cardList = new ArrayList&lt;Card&gt;();</span>
+        try {
+<span class="nc" id="L17">            Object object = parser.parse(new FileReader(dir));</span>
+<span class="nc" id="L18">            JSONArray jsonArray = (JSONArray) object;</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">            for (int i = 0; i &lt; jsonArray.size(); i++) {</span>
+<span class="nc" id="L20">                JSONObject jsonCard = (JSONObject) jsonArray.get(i);</span>
+<span class="nc" id="L21">                String name = (String) jsonCard.get(&quot;name&quot;);</span>
+<span class="nc" id="L22">                String number = (String) jsonCard.get(&quot;number&quot;);</span>
+<span class="nc" id="L23">                Card card = new Card(name, number);</span>
+<span class="nc" id="L24">                cardList.add(card);</span>
+            }
+<span class="nc" id="L26">        } catch (Exception e) {</span>
+<span class="nc" id="L27">            e.printStackTrace();</span>
+<span class="nc" id="L28">        }</span>
+<span class="nc" id="L29">        return cardList;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

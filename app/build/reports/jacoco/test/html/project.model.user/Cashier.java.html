@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cashier.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">project.model.user</a> &gt; <span class="el_source">Cashier.java</span></div><h1>Cashier.java</h1><pre class="source lang-java linenums">package project.model.user;
+
+import java.util.List;
+import java.util.Map;
+
+import project.model.Manager;
+import project.model.payment.Transaction;
+
+<span class="nc" id="L9">public class Cashier extends UserImpl {</span>
+
+    @Override
+    public Manager modify() {
+<span class="nc" id="L13">        return paymentManager;</span>
+    }
+
+    @Override
+    public String list() {
+<span class="nc" id="L18">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L19">        Map&lt;Double, Integer&gt; map = paymentManager.cashManager().register();</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for (Double d : map.keySet()) {</span>
+<span class="nc" id="L21">            sb.append(String.format(&quot;Denomination: %d, Quantity: %d\n&quot;, d, map.get(d)));</span>
+<span class="nc" id="L22">        }</span>
+<span class="nc" id="L23">        return sb.toString();</span>
+    }
+
+    @Override
+    public String summarise() {
+<span class="nc" id="L28">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L29">        List&lt;Transaction&gt; ls = paymentManager.transactions();</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        for (Transaction t : ls) {</span>
+<span class="nc" id="L31">            sb.append(String.format(&quot;Date/Time: %s, Item Sold: %s, Amount Paid: %d, Returned Change: %d, Payment Method: %s\n&quot;,</span>
+<span class="nc" id="L32">                t.date().toString(),</span>
+<span class="nc" id="L33">                t.product().name(),</span>
+<span class="nc" id="L34">                t.amount(),</span>
+<span class="nc" id="L35">                t.change(),</span>
+<span class="nc" id="L36">                t.paymentMethod().toString()</span>
+            ));
+<span class="nc" id="L38">        }</span>
+<span class="nc" id="L39">        return sb.toString();</span>
+    }
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

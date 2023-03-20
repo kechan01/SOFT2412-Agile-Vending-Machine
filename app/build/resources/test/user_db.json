@@ -1,0 +1,34 @@
+{
+  "Customer": [
+    {
+      "username": "charles123",
+      "password": "abc40691"
+    },
+    {
+      "username": "sergio123",
+      "password": "abc42689"
+    }
+  ],
+  "Owner": [
+    {
+      "username": "ruth123",
+      "password": "abc55134"
+    }
+  ],
+  "Cashier": [
+    {
+      "username": "vincent123",
+      "password": "abc59141"
+    }
+  ],
+  "Seller": [
+    {
+      "username": "kasey123",
+      "password": "abc60146"
+    },
+    {
+      "username": "donald123",
+      "password": "abc23858"
+    }
+  ]
+}
